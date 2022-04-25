@@ -1,28 +1,24 @@
-function diagonalDiff(arr) {
-    var n = arr.length; 
-    var d1 = 0;
-    var d2 = 0;
-  for(var i=0; i<n; i++){
+function timeConversion(st) {
+    const slot = s.slice(-2);  // AM or PM
+    const hours = Number(s.slice(0, 2)); //hours 
+    let time = s.slice(0, -2); // i.e 12:00:00
 
-     for(var j=0; j<n; j++){
+    if (slot === 'AM') {
+        if (hours === 12) {
+            return  time.replace(s.slice(0, 2), '00');
+        }
+        return time;
+    } 
 
-         if(i === j) {
-           d1 += arr[i][j];
-         }
+    else if (slot === 'PM') {
+        if (hours !== 12) {
+            return time.replace(s.slice(0, 2), String(hours + 12));
+        } 
+        return time;
+    }
 
-         if(i + j === n - 1){
-            d2 += arr[i][j];
-         }
-      }
-  }
-  return Math.abs(d1 - d2);
 }
 
-let arr=[
-    [1 , 2 , 4],
-    [4 , 5 , 6],
-    [1 , 8 , 2]
-  ]
+var st="09:00:00PM"
 
-console.log(diagonalDiff(arr))
-    
+console.log(timeConversion(st))
